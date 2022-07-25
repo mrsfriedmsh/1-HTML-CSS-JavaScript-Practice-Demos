@@ -1,0 +1,53 @@
+
+<!-- HTML    node is parentNode of <head>
+P       node is nextSibling of <h1>
+H1      node is previousSibling of <p>
+H1      node is firstChild of <body>
+Body    node is the lastChild of <html>  -->
+
+
+<!-- Locating Nodes -->
+
+<html>
+    <body>
+        <h1 id ='myH1'>Find Me!</h1>
+        <script>
+            document.getElementsbyID('h1')
+        </script>
+    </body>
+</html>
+
+<!-- Creating and Adding Nodes
+    document.createElement('elementname')
+create a new text node
+    document.createTextNode('elementname')
+
+The below example is how to use nodes to create a new paragraph within the html -->
+<html>
+    <body>
+        <h1>Hello World!</h1>
+        <p>Give this an element.</p>
+        <script>
+            const paragraph = document.createElement('p')
+            paragraph.innerHtml = 'Another paragraph to add.'
+
+            document.body.appendChild(paragraph)
+        </script>
+    </body>
+</html>
+
+<!-- Removing Nodes - two ways -->
+node.removeChild(child node to remove)
+node.remove()
+
+in HTML - <p id="myP"><img</p>
+
+<!-- use a while loop to remove all the child nodes of a parent node without removing the parent nodes -->
+<!-- The below would remove all the children and just leave the parent.  -->
+while (node.firstChild) {
+    node.removeChild(node.firstChild)
+;}
+
+Cloning Nodes
+node.cloneNode() - only going to clone the node itself
+node.cloneNode(true) - going to clone the node plus the branch

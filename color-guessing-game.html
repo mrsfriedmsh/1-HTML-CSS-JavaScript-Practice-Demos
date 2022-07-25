@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Color Guessing Game</title>
+</head>
+<body>
+    <h1>Color Guessing Game</h1>
+    <button type="button" onclick="runGame()">Start Game</button>
+    <script>
+        const COLORS_ARRAY = ['blue', 'cyan', 'gold', 'gray', 'green', 'magenta', 'orange', 'red', 'white', 'yellow']
+        let numTries = 0;
+        function runGame() {
+            let guessColor = '';
+            let correct = "false";
+            
+
+            const targetIndex = Math.floor(Math.random () * 9);
+            const target = COLORS_ARRAY[targetIndex];
+
+            console.log(target)
+
+            do {
+                guessColor = prompt('I am thinking of one of these colors:\n\n' + COLORS_ARRAY.join(' | ') + '\n\nWhat color am I thinking of?\n');
+                if (guessColor === null) {
+                    alert('Okay.......Bye!');
+                    return;
+                }
+                numTries += 1;
+                correct = checkGuess(guessColor, target);
+            } while (!correct);
+
+            alert('Congratulations! The color was ' + target + '.\n\nYou guessed it in ' + numTries + ' tries.\n');
+            document.body.style.background = guessColor;
+        }
+
+        function checkGuess(guessColor, target) {
+            let correct = false;
+            
+            if (!COLORS_ARRAY.includes(guessColor)) {
+                alert('You have not entered a color option listed below.\n\n' + COLORS_ARRAY.join(' | ') + '\n\nPlease make sure to choose one of the color options provided.\n');
+                
+            } else if (guessColor > target) {
+                alert('You went too far right.' + '\n\nYou have attempted ' + numTries + ' tries.\n');
+               
+            } else if (guessColor < target) {
+                alert("You went too far left." + '\n\nYou have attempted ' + numTries + ' tries.\n');
+                
+            } else {
+                correct = true;
+            }
+            return correct;
+        }
+    </script>
+</body>
